@@ -1,0 +1,175 @@
+/* LandingPage.css */
+
+/* General Styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  box-sizing: border-box;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.landing-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background-image: url("https://plus.unsplash.com/premium_photo-1687854992749-e15cba89631d?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  background-color: #00bcd4;
+  border: none;
+  color: #ffffff;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0097a7;
+}
+
+/* Features Section */
+.features {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.feature-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.feature-item {
+  flex: 1;
+  max-width: 300px;
+  padding: 20px;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.feature-item img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+/* How It Works Section */
+.how-it-works {
+  padding: 60px 20px;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.step {
+  flex: 1;
+  max-width: 300px;
+  padding: 20px;
+  background-color: #292929;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.testimonial {
+  margin: 20px auto;
+  max-width: 600px;
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  font-style: italic;
+}
+
+/* Showcase Section */
+.showcase {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.showcase-images img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+/* Call to Action Section */
+.call-to-action {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #00bcd4;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+/* Footer Section */
+.footer {
+  padding: 40px 20px;
+  background-color: #1f1f1f;
+  text-align: center;
+}
+
+.footer-links {
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #00bcd4;
+}
+
+.social-media img {
+  width: 30px;
+  margin: 0 10px;
+}
+
+.contact-info {
+  margin-top: 20px;
+  color: #aaaaaa;
+}
+
+#how-it-works h2 {
+  text-align: center;
+  padding-bottom: 16px;
+}

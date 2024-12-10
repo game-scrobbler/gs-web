@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { LandingPage, Dashboard, LoginPage } from "./pages";
+import { Routes, Route } from "react-router-dom";
+import { Header } from "./components";
+import { UserProvider } from "./context/UserContext"; // Import the provider
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+      <Header />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/Log-In" element={<LoginPage />} />
+        {/* Catch-all route for undefined paths */}
+        {/* <Route path="*" element={<NotFound />} /> */}
+      </Routes>
+    </UserProvider>
   );
 }
 
