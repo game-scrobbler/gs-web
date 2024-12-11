@@ -20,7 +20,7 @@ export const LoginPage = () => {
           withCredentials: true, // Include cookies for session management
         }
       );
-      console.log(response.data.message); // Log the success message
+      console.log(response); // Log the success message
       // Clear user data or redirect to the login page
     } catch (error) {
       console.error("Logout failed:", error);
