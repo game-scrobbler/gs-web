@@ -12,25 +12,6 @@ export const LoginPage = () => {
     window.location.href = "https://game-trace-be.onrender.com/auth/steam";
   };
 
-  const test = async () => {
-    try {
-      const response = await axios.get(
-        "https://game-trace-be.onrender.com/",  
-        {
-          withCredentials: true, // Include cookies for session management
-        }
-      );
-      console.log(response); // Log the success message
-      // Clear user data or redirect to the login page
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
-
-  useEffect(() => {
-    test();
-  });
-
   // useEffect(() => {
   //   const fetchUser = async () => {
   //     try {
