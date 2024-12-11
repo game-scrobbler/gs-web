@@ -27,7 +27,7 @@ export const Header = () => {
     <header className="header">
       <div className="logo">
         <NavLink to="/" className="navLink">
-          GameTracker
+          Game Trace
         </NavLink>
       </div>
       <nav className="navigation">
