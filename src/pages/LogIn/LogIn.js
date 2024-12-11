@@ -9,7 +9,7 @@ export const LoginPage = () => {
 
   const handleSteamLogin = () => {
     // Redirect the user to the backend Steam authentication route
-    window.location.href = "http://localhost:5000/auth/steam";
+    window.location.href = "https://game-trace-be.onrender.com/auth/steam";
   };
 
   // useEffect(() => {

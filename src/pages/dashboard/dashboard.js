@@ -59,7 +59,7 @@ export const Dashboard = () => {
   const fetchAchievements = async (appid) => {
     try {
       const achievementResponse = await axios.get(
-        "http://localhost:5000/api/app-achievement",
+        "https://game-trace-be.onrender.com/api/app-achievement",
         {
           params: { steamid: user.id, appid: appid },
         }
@@ -93,7 +93,7 @@ export const Dashboard = () => {
     try {
       const steamid = userData.id; // Replace with the user's Steam ID
       const response = await axios.get(
-        "http://localhost:5000/api/owned-games",
+        "https://game-trace-be.onrender.com/api/owned-games",
         {
           params: { steamid },
         }
@@ -126,7 +126,7 @@ export const Dashboard = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/auth/steam/user",
+          "https://game-trace-be.onrender.com/auth/steam/user",
           {
             withCredentials: true, // Ensures cookies are sent with the request
           }

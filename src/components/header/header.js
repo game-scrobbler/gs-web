@@ -10,7 +10,7 @@ export const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/logout", {
+      const response = await axios.get("https://game-trace-be.onrender.com/logout", {
         withCredentials: true, // Include cookies for session management
       });
       console.log(response.data.message); // Log the success message
