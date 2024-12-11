@@ -126,7 +126,7 @@ export const Dashboard = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://game-trace-be.onrender.com:5000/auth/steam/user",
+          "https://game-trace-be.onrender.com/auth/steam/user",
           {
             withCredentials: true, // Ensures cookies are sent with the request
           }
