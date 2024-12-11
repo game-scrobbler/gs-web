@@ -16,6 +16,7 @@ export const Header = () => {
       console.log(response.data.message); // Log the success message
       // Clear user data or redirect to the login page
       setUser(null);
+      sessionStorage.removeItem("user");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -46,7 +47,7 @@ export const Header = () => {
           </li>
           <li>
             {user ? (
-              <NavLink>
+              <NavLink to="/" onClick={handleLogout}>
                 <img className="userLogo" src={user.photos[2].value}></img>
               </NavLink>
             ) : (

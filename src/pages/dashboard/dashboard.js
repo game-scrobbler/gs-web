@@ -122,23 +122,43 @@ export const Dashboard = () => {
     }
   };
 
-
   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/auth/steam/user",
+          {
+            withCredentials: true, // Ensures cookies are sent with the request
+          }
+        );
+        console.log("User data:", response.data.user);
+        let userRes = response.data.user;
+        sessionStorage.setItem("user", JSON.stringify(userRes));
+        setUser(userRes); // Decode and parse the user data
+        fetchOwnedGames(userRes);
+        fetchAllAchievements();
+        return response.data.user; // Save user data in your app's state
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
+      }
+    };
     // Parse user data from the query parameter
-    const query = new URLSearchParams(location.search);
-    const userData = query.get("user");
+    // const query = new URLSearchParams(location.search);
+    // const userData = query.get("user");
+    fetchUser();
     const sessionUser = JSON.parse(sessionStorage.getItem("user"));
     if (sessionUser) {
       setUser(sessionUser); // Decode and parse the user data
       fetchOwnedGames(sessionUser);
       fetchAllAchievements();
-    } else if (userData) {
-      sessionStorage.setItem("user", decodeURIComponent(userData));
-      setUser(JSON.parse(decodeURIComponent(userData))); // Decode and parse the user data
-      fetchOwnedGames(JSON.parse(decodeURIComponent(userData)));
-      fetchAllAchievements();
-      window.history.replaceState(null, "", window.location.pathname);
     }
+    // else if (userData) {
+    //   sessionStorage.setItem("user", decodeURIComponent(userRes));
+    //   setUser(JSON.parse(decodeURIComponent(userRes))); // Decode and parse the user data
+    //   fetchOwnedGames(JSON.parse(decodeURIComponent(userRes)));
+    //   fetchAllAchievements();
+    //   window.history.replaceState(null, "", window.location.pathname);
+    // }
   }, [location]);
 
   const fetchAllAchievements = async () => {
