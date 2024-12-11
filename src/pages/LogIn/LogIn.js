@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import axios from "axios";
 import "./LogIn.css"; // Assuming you'll add your styles here
 
@@ -11,6 +11,25 @@ export const LoginPage = () => {
     // Redirect the user to the backend Steam authentication route
     window.location.href = "https://game-trace-be.onrender.com/auth/steam";
   };
+
+  const test = async () => {
+    try {
+      const response = await axios.get(
+        "https://game-trace-be.onrender.com/test",
+        {
+          withCredentials: true, // Include cookies for session management
+        }
+      );
+      console.log(response.data.message); // Log the success message
+      // Clear user data or redirect to the login page
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
+  useEffect(() => {
+    test();
+  });
 
   // useEffect(() => {
   //   const fetchUser = async () => {
