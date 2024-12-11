@@ -15,7 +15,7 @@ export const LoginPage = () => {
   const test = async () => {
     try {
       const response = await axios.get(
-        "https://game-trace-be.onrender.com/", null, 
+        "https://game-trace-be.onrender.com/",  
         {
           withCredentials: true, // Include cookies for session management
         }
