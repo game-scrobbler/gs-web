@@ -8,7 +8,7 @@ export const Dashboard = () => {
   const { setUser } = useContext(UserContext);
   const [setError] = useState(null);
   const location = useLocation();
-  const [sortedData, setSortedData] = useState(null);
+  const [sortedData, setSortedData] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   // Sorting function
