@@ -98,13 +98,13 @@ export const LandingPage = () => {
       {/* Footer Section */}
       <footer className="footer">
         <div className="footer-links">
-          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+          <a href="/">Privacy Policy</a> | <a href="/">Terms of Service</a>
         </div>
         <div className="social-media">
-          <a href="#">
+          <a href="/">
             <img src="/icons/twitter-icon.png" alt="Twitter" />
           </a>
-          <a href="#">
+          <a href="/">
             <img src="/icons/instagram-icon.png" alt="Instagram" />
           </a>
         </div>

@@ -1,16 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
-import { json, useLocation } from "react-router-dom";
+import React, { useEffect, useState, useContext, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import "./dashboard.css"; // Assuming you'll add your styles here
 import { UserContext } from "../../context/UserContext";
-import axios from "axios";
+import { GetSteamAchievement, GetSteamLibrary, FetchUser } from "../../api";
 
 export const Dashboard = () => {
-  // const [user, setUser] = useState(null);
-  const { user, setUser } = useContext(UserContext);
-  const [ownedGames, setOwnedGames] = useState([]);
-  const [error, setError] = useState(null);
+  const { setUser } = useContext(UserContext);
+  const [setError] = useState(null);
   const location = useLocation();
-  const [sortedData, setSortedData] = useState(ownedGames);
+  const [sortedData, setSortedData] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   // Sorting function
@@ -34,134 +32,7 @@ export const Dashboard = () => {
     setSortConfig({ key, direction });
   };
 
-  // const fetchAchievements = async (appid, steamid) => {
-  //   try {
-  //     const achievementResponse = await axios.get(
-  //       "http://localhost:5000/api/app-achievement",
-  //       {
-  //         params: { steamid: steamid, appid: appid },
-  //       }
-  //     );
-
-  //     const achievements = achievementResponse.data || [];
-  //     const achievementsCompleted = achievements.filter(
-  //       (ach) => ach.achieved
-  //     ).length;
-  //     const totalAchievements = achievements.length;
-
-  //     return { achievementsCompleted, totalAchievements };
-  //   } catch (err) {
-  //     // console.error(`Error fetching achievements for appid ${appid}:`, err);
-  //     return { achievementsCompleted: 0, totalAchievements: 0 };
-  //   }
-  // };
-
-  const fetchAchievements = async (appid) => {
-    try {
-      const achievementResponse = await axios.get(
-        "https://game-trace-be.onrender.com/api/app-achievement",
-        {
-          params: { steamid: user.id, appid: appid },
-        }
-      );
-
-      // Process response if the game has achievements
-      const achievements = achievementResponse.data || [];
-      const achievementsCompleted = achievements.filter(
-        (ach) => ach.achieved
-      ).length;
-      const totalAchievements = achievements.length;
-
-      return { achievementsCompleted, totalAchievements };
-    } catch (err) {
-      // Check if the error is due to a lack of achievements (400 status)
-      if (err.response && err.response.status === 400) {
-        console.warn(`Game ${appid} has no achievements.`);
-        return { achievementsCompleted: 0, totalAchievements: 0 };
-      }
-
-      // Handle other errors
-      console.error(
-        `Error fetching achievements for appid ${appid}:`,
-        err.message
-      );
-      return { achievementsCompleted: 0, totalAchievements: 0 };
-    }
-  };
-
-  const fetchOwnedGames = async (userData) => {
-    try {
-      const steamid = userData.id; // Replace with the user's Steam ID
-      const response = await axios.get(
-        "https://game-trace-be.onrender.com/api/owned-games",
-        {
-          params: { steamid },
-        }
-      );
-
-      let games = response.data.games;
-      let tempOwnedGames = [];
-
-      games.map(async (game) => {
-        tempOwnedGames.push({
-          title: game.name,
-          platform: "Steam",
-          hoursPlayed: Math.round((game.playtime_forever * 10) / 60) / 10,
-          achievementsCompleted: 0,
-          totalAchievements: 0,
-          appid: game.appid,
-        });
-      });
-      console.log(tempOwnedGames);
-
-      setOwnedGames(tempOwnedGames || []); // Set the games data
-      setSortedData(tempOwnedGames || []); // Set the games data
-    } catch (err) {
-      console.error("Error fetching owned games:", err);
-      setError("Failed to load owned games.");
-    }
-  };
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          "https://game-trace-be.onrender.com/auth/steam/user",
-          {
-            withCredentials: true, // Ensures cookies are sent with the request
-          }
-        );
-        console.log("User data:", response.data.user);
-        let userRes = response.data.user;
-        sessionStorage.setItem("user", JSON.stringify(userRes));
-        setUser(userRes); // Decode and parse the user data
-        fetchOwnedGames(userRes);
-        fetchAllAchievements();
-        return response.data.user; // Save user data in your app's state
-      } catch (error) {
-        console.error("Error fetching user data:", error.message);
-      }
-    };
-    // Parse user data from the query parameter
-    // const query = new URLSearchParams(location.search);
-    // const userData = query.get("user");
-    fetchUser();
-    const sessionUser = JSON.parse(sessionStorage.getItem("user"));
-    if (sessionUser) {
-      setUser(sessionUser); // Decode and parse the user data
-      fetchOwnedGames(sessionUser);
-      fetchAllAchievements();
-    }
-    // else if (userData) {
-    //   sessionStorage.setItem("user", decodeURIComponent(userRes));
-    //   setUser(JSON.parse(decodeURIComponent(userRes))); // Decode and parse the user data
-    //   fetchOwnedGames(JSON.parse(decodeURIComponent(userRes)));
-    //   fetchAllAchievements();
-    //   window.history.replaceState(null, "", window.location.pathname);
-    // }
-  }, [location]);
-
-  const fetchAllAchievements = async () => {
+  const fetchAllAchievements = useCallback(async () => {
     const batchSize = 50;
 
     for (let i = 0; i < sortedData.length; i += batchSize) {
@@ -171,7 +42,7 @@ export const Dashboard = () => {
         const updatedBatch = await Promise.all(
           batch.map(async (game) => {
             const { achievementsCompleted, totalAchievements } =
-              await fetchAchievements(game.appid);
+              await GetSteamAchievement(game.appid);
             return {
               ...game,
               achievementsCompleted,
@@ -193,7 +64,23 @@ export const Dashboard = () => {
         setError("Failed to load some achievements.");
       }
     }
-  };
+  }, [sortedData, setError]);
+  useEffect(() => {
+    FetchUser().then((userRes) => {
+      GetSteamLibrary(userRes).then((ownedGames) => {
+        setSortedData(ownedGames); // Set the games data
+        fetchAllAchievements();
+      });
+    });
+    const sessionUser = JSON.parse(sessionStorage.getItem("user"));
+    if (sessionUser) {
+      setUser(sessionUser); // Decode and parse the user data
+      GetSteamLibrary(sessionUser).then((ownedGames) => {
+        setSortedData(ownedGames); // Set the games data
+        fetchAllAchievements();
+      });
+    }
+  }, [location, fetchAllAchievements, setUser]);
 
   return (
     <div className="dashboard">

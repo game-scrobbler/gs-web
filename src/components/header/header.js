@@ -2,27 +2,10 @@ import React, { useContext } from "react";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import axios from "axios";
+import { handleLogout } from "../../api";
 
 export const Header = () => {
-  const { user, setUser } = useContext(UserContext);
-  //   console.log("header: " + user?.id);
-
-  const handleLogout = async () => {
-    try {
-      const response = await axios.get("https://game-trace-be.onrender.com/logout", {
-        withCredentials: true, // Include cookies for session management
-      });
-      console.log(response.data.message); // Log the success message
-      // Clear user data or redirect to the login page
-      setUser(null);
-      sessionStorage.removeItem("user");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
-
-  //   console.log("header: " + user);
+  const { user } = useContext(UserContext);
 
   return (
     <header className="header">
@@ -48,7 +31,11 @@ export const Header = () => {
           <li>
             {user ? (
               <NavLink to="/" onClick={handleLogout}>
-                <img className="userLogo" src={user.photos[2].value}></img>
+                <img
+                  className="userLogo"
+                  src={user.photos[2].value}
+                  alt="user Img"
+                ></img>
               </NavLink>
             ) : (
               <NavLink to="/Log-In">
