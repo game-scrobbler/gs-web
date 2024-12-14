@@ -67,7 +67,9 @@ export const Dashboard = () => {
   }, [sortedData, setError]);
   useEffect(() => {
     let userRes = FetchUser();
+    console.log(userRes);
     let ownedGames = GetSteamLibrary(userRes);
+    console.log(ownedGames);
     setSortedData(ownedGames); // Set the games data
     fetchAllAchievements();
 
