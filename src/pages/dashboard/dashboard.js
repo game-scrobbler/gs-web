@@ -5,10 +5,11 @@ import { UserContext } from "../../context/UserContext";
 import { GetSteamAchievement, GetSteamLibrary, FetchUser } from "../../api";
 
 export const Dashboard = () => {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser, ApiUrl } = useContext(UserContext);
   const [setError] = useState(null);
   const location = useLocation();
-  const [sortedData, setSortedData] = useState([]);
+  const [allGames, setAllGames] = useState([]);
+  const [sortedData, setSortedData] = useState(allGames);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   // Sorting function
@@ -32,7 +33,7 @@ export const Dashboard = () => {
     setSortConfig({ key, direction });
   };
 
-  const fetchAllAchievements = useCallback(async () => {
+  const fetchAllAchievements = async () => {
     const batchSize = 50;
 
     for (let i = 0; i < sortedData.length; i += batchSize) {
@@ -42,7 +43,7 @@ export const Dashboard = () => {
         const updatedBatch = await Promise.all(
           batch.map(async (game) => {
             const { achievementsCompleted, totalAchievements } =
-              await GetSteamAchievement(game.appid);
+              await GetSteamAchievement(game.appid, user, ApiUrl);
             return {
               ...game,
               achievementsCompleted,
@@ -64,24 +65,28 @@ export const Dashboard = () => {
         setError("Failed to load some achievements.");
       }
     }
-  }, [sortedData, setError]);
+  };
+
   useEffect(() => {
-    let userRes = FetchUser();
-    console.log(userRes);
-    let ownedGames = GetSteamLibrary(userRes);
-    console.log(ownedGames);
-    setSortedData(ownedGames); // Set the games data
-    fetchAllAchievements();
+    FetchUser(setUser, ApiUrl).then((userRes) => {
+      GetSteamLibrary(userRes, ApiUrl).then((ownedGames) => {
+        setAllGames(ownedGames); // Set the games data
+      });
+    });
 
     const sessionUser = JSON.parse(sessionStorage.getItem("user"));
     if (sessionUser) {
       setUser(sessionUser); // Decode and parse the user data
-      GetSteamLibrary(sessionUser).then((ownedGames) => {
-        setSortedData(ownedGames); // Set the games data
-        fetchAllAchievements();
+      GetSteamLibrary(sessionUser, ApiUrl).then((ownedGames) => {
+        setAllGames(ownedGames); // Set the games data
       });
     }
-  }, [location, fetchAllAchievements, setUser]);
+  }, [location]);
+
+  useEffect(() => {
+    setSortedData(allGames);
+    fetchAllAchievements();
+  }, [allGames]);
 
   return (
     <div className="dashboard">
@@ -98,12 +103,12 @@ export const Dashboard = () => {
         <div className="stats-container">
           <div className="stat-item">
             <h3>Total Games</h3>
-            <p>{sortedData.length}</p>
+            <p>{allGames.length}</p>
           </div>
           <div className="stat-item">
             <h3>Total Hours Played</h3>
             <p>
-              {sortedData.reduce(
+              {allGames.reduce(
                 (total, game) => total + Math.round(game.hoursPlayed),
                 0
               )}{" "}

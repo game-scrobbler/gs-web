@@ -1,9 +1,6 @@
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
-export const FetchUser = async () => {
-  const { setUser, ApiUrl } = useContext(UserContext);
+export const FetchUser = async (setUser, ApiUrl) => {
   try {
     const response = await axios.get(ApiUrl + "/auth/steam/user", {
       withCredentials: true, // Ensures cookies are sent with the request
@@ -20,8 +17,7 @@ export const FetchUser = async () => {
   }
 };
 
-export const HandleLogout = async () => {
-  const { setUser, ApiUrl } = useContext(UserContext);
+export const HandleLogout = async (setUser, ApiUrl) => {
   try {
     const response = await axios.get(ApiUrl + "/logout", {
       withCredentials: true, // Include cookies for session management

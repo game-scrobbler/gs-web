@@ -1,9 +1,11 @@
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
-export const GetSteamAchievement = async (appid) => {
-  const { user, ApiUrl } = useContext(UserContext);
+export const HandleSteamLogin = (ApiUrl) => {
+  // Redirect the user to the backend Steam authentication route
+  window.location.href = ApiUrl + "/auth/steam";
+};
+
+export const GetSteamAchievement = async (appid, user, ApiUrl) => {
   try {
     const achievementResponse = await axios.get(
       ApiUrl + "/api/app-achievement",
@@ -36,8 +38,7 @@ export const GetSteamAchievement = async (appid) => {
   }
 };
 
-export const GetSteamLibrary = async (user) => {
-  const { ApiUrl } = useContext(UserContext);
+export const GetSteamLibrary = async (user, ApiUrl) => {
   try {
     const steamId = user.id; // Replace with the user's Steam ID
     const response = await axios.get(ApiUrl + "/api/owned-games", {
