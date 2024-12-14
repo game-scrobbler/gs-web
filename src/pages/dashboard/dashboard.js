@@ -36,8 +36,8 @@ export const Dashboard = () => {
   const fetchAllAchievements = async () => {
     const batchSize = 50;
 
-    for (let i = 0; i < sortedData.length; i += batchSize) {
-      const batch = sortedData.slice(i, i + batchSize);
+    for (let i = 0; i < allGames.length; i += batchSize) {
+      const batch = allGames.slice(i, i + batchSize);
 
       try {
         const updatedBatch = await Promise.all(
