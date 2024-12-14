@@ -66,12 +66,11 @@ export const Dashboard = () => {
     }
   }, [sortedData, setError]);
   useEffect(() => {
-    FetchUser().then((userRes) => {
-      GetSteamLibrary(userRes).then((ownedGames) => {
-        setSortedData(ownedGames); // Set the games data
-        fetchAllAchievements();
-      });
-    });
+    let userRes = FetchUser();
+    let ownedGames = GetSteamLibrary(userRes);
+    setSortedData(ownedGames); // Set the games data
+    fetchAllAchievements();
+
     const sessionUser = JSON.parse(sessionStorage.getItem("user"));
     if (sessionUser) {
       setUser(sessionUser); // Decode and parse the user data

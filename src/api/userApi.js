@@ -3,7 +3,7 @@ import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
 export const FetchUser = async () => {
-  const { ApiUrl } = useContext(UserContext);
+  const { setUser, ApiUrl } = useContext(UserContext);
   try {
     const response = await axios.get(ApiUrl + "/auth/steam/user", {
       withCredentials: true, // Ensures cookies are sent with the request
@@ -11,7 +11,7 @@ export const FetchUser = async () => {
     console.log("User data:", response.data.user);
     let userRes = response.data.user;
     sessionStorage.setItem("user", JSON.stringify(userRes));
-    // setUser(userRes); // Decode and parse the user data
+    setUser(userRes); // Decode and parse the user data
     // fetchOwnedGames(userRes);
     // fetchAllAchievements();
     return response.data.user; // Save user data in your app's state
