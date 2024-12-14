@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { HandleLogout } from "../../api";
 
 export const Header = () => {
-  const { user, setUser, ApiUrl } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <header className="header">
@@ -30,7 +29,7 @@ export const Header = () => {
           </li>
           <li>
             {user ? (
-              <NavLink to="/" onClick={() => HandleLogout(setUser, ApiUrl)}>
+              <NavLink to="/Log-In">
                 <img
                   className="userLogo"
                   src={user.photos[2].value}

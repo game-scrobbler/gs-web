@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import "./LogIn.css"; // Assuming you'll add your styles here
-import { HandleSteamLogin } from "../../api";
+import { HandleSteamLogin, HandleLogout } from "../../api";
 import { UserContext } from "../../context/UserContext";
 
 // LoginPage component for rendering the login page
 export const LoginPage = () => {
-  const { ApiUrl } = useContext(UserContext);
+  const { user, setUser, ApiUrl } = useContext(UserContext);
   return (
     <div className="login-page">
       <header className="login-header">
@@ -26,6 +26,16 @@ export const LoginPage = () => {
           Log in with Steam
         </button>
         <button className="login-button xbox">Log in with Xbox</button>
+        {user ? (
+          <button
+            className="logout-button"
+            onClick={() => HandleLogout(setUser, ApiUrl)}
+          >
+            Log Out
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
