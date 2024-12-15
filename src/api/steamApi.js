@@ -8,7 +8,7 @@ export const HandleSteamLogin = (ApiUrl) => {
 export const GetSteamAchievement = async (appid, user, ApiUrl) => {
   try {
     const achievementResponse = await axios.get(
-      ApiUrl + "/api/app-achievement",
+      ApiUrl + "/api/router-achievement",
       {
         params: { steamid: user.id, appid: appid },
       }

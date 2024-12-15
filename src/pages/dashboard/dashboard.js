@@ -2,7 +2,11 @@ import React, { useEffect, useState, useContext, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import "./dashboard.css"; // Assuming you'll add your styles here
 import { UserContext } from "../../context/UserContext";
-import { GetSteamAchievement, GetSteamLibrary, FetchUser } from "../../api";
+import {
+  GetSteamAchievement,
+  GetSteamLibrary,
+  FetchSteamUser,
+} from "../../api";
 
 export const Dashboard = () => {
   const { user, setUser, ApiUrl } = useContext(UserContext);
@@ -43,7 +47,7 @@ export const Dashboard = () => {
         const updatedBatch = await Promise.all(
           batch.map(async (game) => {
             const { achievementsCompleted, totalAchievements } =
-              await GetSteamAchievement(game.appid, user, ApiUrl);
+              await GetSteamAchievement(game.appid, user.steam, ApiUrl);
             return {
               ...game,
               achievementsCompleted,
@@ -68,8 +72,10 @@ export const Dashboard = () => {
   };
 
   useEffect(() => {
-    FetchUser(setUser, ApiUrl).then((userRes) => {
-      GetSteamLibrary(userRes, ApiUrl).then((ownedGames) => {
+    FetchSteamUser(setUser, ApiUrl).then((userRes) => {
+      console.log(userRes);
+
+      GetSteamLibrary(userRes.steam, ApiUrl).then((ownedGames) => {
         setAllGames(ownedGames); // Set the games data
       });
     });
@@ -77,7 +83,7 @@ export const Dashboard = () => {
     const sessionUser = JSON.parse(sessionStorage.getItem("user"));
     if (sessionUser) {
       setUser(sessionUser); // Decode and parse the user data
-      GetSteamLibrary(sessionUser, ApiUrl).then((ownedGames) => {
+      GetSteamLibrary(sessionUser.steam, ApiUrl).then((ownedGames) => {
         setAllGames(ownedGames); // Set the games data
       });
     }

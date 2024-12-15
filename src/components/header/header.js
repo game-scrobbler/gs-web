@@ -32,7 +32,7 @@ export const Header = () => {
               <NavLink to="/Log-In">
                 <img
                   className="userLogo"
-                  src={user.photos[2].value}
+                  src={user.steam.photos[2].value}
                   alt="user Img"
                 ></img>
               </NavLink>
