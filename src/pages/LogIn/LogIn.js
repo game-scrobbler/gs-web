@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import "./LogIn.css"; // Assuming you'll add your styles here
-import { HandleSteamLogin, HandleLogout } from "../../api";
+import { HandleSteamLogin, HandleLogout, HandleEpicLogin } from "../../api";
 import { UserContext } from "../../context/UserContext";
 
 // LoginPage component for rendering the login page
 export const LoginPage = () => {
-  const { user, setUser, ApiUrl } = useContext(UserContext);
+  const { user, setSteamUser, setEpicUser, steamUser, epicUser, ApiUrl } =
+    useContext(UserContext);
   console.log(user);
 
   return (
@@ -18,8 +19,6 @@ export const LoginPage = () => {
       </header>
 
       <div className="login-container">
-        <input type="email" placeholder="Email" className="login-input" />
-        <input type="password" placeholder="Password" className="login-input" />
 
         {user?.platform === "google" ? (
           <button className="login-button google disabled">
@@ -29,7 +28,7 @@ export const LoginPage = () => {
           <button className="login-button google">Log in with Google</button>
         )}
 
-        {user?.steam ? (
+        {steamUser ? (
           <button className="login-button steam disabled">
             Already Logged in with Steam
           </button>
@@ -50,18 +49,10 @@ export const LoginPage = () => {
           <button className="login-button xbox">Log in with Xbox</button>
         )}
 
-        {user?.platform === "epic" ? (
-          <button className="login-button epic disabled">
-            Already Logged in with Epic Games
-          </button>
-        ) : (
-          <button className="login-button epic">Log in with Epic Games</button>
-        )}
-
-        {user ? (
+        {steamUser ? (
           <button
             className="logout-button"
-            onClick={() => HandleLogout(setUser, ApiUrl)}
+            onClick={() => HandleLogout(setSteamUser, setEpicUser, ApiUrl)}
           >
             Log Out
           </button>

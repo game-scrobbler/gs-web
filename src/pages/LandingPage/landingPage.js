@@ -3,10 +3,11 @@ import { icons, img } from "../../assets";
 import "./landingPage.css"; // Assuming you'll add your styles here
 
 export const LandingPage = () => {
+  // sessionStorage.removeItem("steamUser");
+  // sessionStorage.removeItem("epicUser");
+  // sessionStorage.removeItem("user");
   return (
     <div className="landing-page">
-     
-
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">

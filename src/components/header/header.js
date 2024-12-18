@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
 export const Header = () => {
-  const { user } = useContext(UserContext);
+  const { steamUser } = useContext(UserContext);
 
   return (
     <header className="header">
@@ -28,11 +28,11 @@ export const Header = () => {
             <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
           <li>
-            {user ? (
+            {steamUser ? (
               <NavLink to="/Log-In">
                 <img
                   className="userLogo"
-                  src={user.steam.photos[2].value}
+                  src={steamUser.photos[2].value}
                   alt="user Img"
                 ></img>
               </NavLink>

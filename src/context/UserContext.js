@@ -5,26 +5,33 @@ export const UserContext = createContext();
 
 // Create a provider component
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [steamUser, setSteamUser] = useState(null);
   const [ApiUrl] = useState("http://localhost:4000");
 
   useEffect(() => {
-    const storedUser = sessionStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    const storedSteamUser = sessionStorage.getItem("steamUser");
+    if (storedSteamUser) {
+      setSteamUser(JSON.parse(storedSteamUser));
     }
+    sessionStorage.setItem("steamUser", JSON.stringify(storedSteamUser));
   }, []);
 
   useEffect(() => {
-    if (user) {
-      sessionStorage.setItem("user", JSON.stringify(user));
+    if (steamUser) {
+      sessionStorage.setItem("steamUser", JSON.stringify(steamUser));
     } else {
-      sessionStorage.removeItem("user");
+      sessionStorage.removeItem("steamUser");
     }
-  }, [user]);
+  }, [steamUser]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, ApiUrl }}>
+    <UserContext.Provider
+      value={{
+        ApiUrl,
+        steamUser,
+        setSteamUser,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

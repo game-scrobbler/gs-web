@@ -6,10 +6,12 @@ import {
   GetSteamAchievement,
   GetSteamLibrary,
   FetchSteamUser,
+  GetEpicAccessToken,
+  FetchEpicUser,
 } from "../../api";
 
 export const Dashboard = () => {
-  const { user, setUser, ApiUrl } = useContext(UserContext);
+  const { ApiUrl, steamUser, setSteamUser } = useContext(UserContext);
   const [setError] = useState(null);
   const location = useLocation();
   const [allGames, setAllGames] = useState([]);
@@ -37,7 +39,7 @@ export const Dashboard = () => {
     setSortConfig({ key, direction });
   };
 
-  const fetchAllAchievements = async () => {
+  const fetchAllSteamAchievements = async () => {
     const batchSize = 50;
 
     for (let i = 0; i < allGames.length; i += batchSize) {
@@ -47,7 +49,7 @@ export const Dashboard = () => {
         const updatedBatch = await Promise.all(
           batch.map(async (game) => {
             const { achievementsCompleted, totalAchievements } =
-              await GetSteamAchievement(game.appid, user.steam, ApiUrl);
+              await GetSteamAchievement(game.appid, steamUser, ApiUrl);
             return {
               ...game,
               achievementsCompleted,
@@ -72,18 +74,21 @@ export const Dashboard = () => {
   };
 
   useEffect(() => {
-    FetchSteamUser(setUser, ApiUrl).then((userRes) => {
-      console.log(userRes);
-
-      GetSteamLibrary(userRes.steam, ApiUrl).then((ownedGames) => {
-        setAllGames(ownedGames); // Set the games data
+    try {
+      FetchSteamUser(setSteamUser, ApiUrl).then((userRes) => {
+        if (userRes) {
+          GetSteamLibrary(userRes, ApiUrl).then((ownedGames) => {
+            setAllGames(ownedGames); // Set the games data
+          });
+        }
       });
-    });
-
-    const sessionUser = JSON.parse(sessionStorage.getItem("user"));
-    if (sessionUser) {
-      setUser(sessionUser); // Decode and parse the user data
-      GetSteamLibrary(sessionUser.steam, ApiUrl).then((ownedGames) => {
+    } catch (error) {
+      console.log(error);
+    }
+    const sessionSteamUser = JSON.parse(sessionStorage.getItem("steamUser"));
+    if (sessionSteamUser) {
+      setSteamUser(sessionSteamUser); // Decode and parse the user data
+      GetSteamLibrary(sessionSteamUser, ApiUrl).then((ownedGames) => {
         setAllGames(ownedGames); // Set the games data
       });
     }
@@ -91,7 +96,7 @@ export const Dashboard = () => {
 
   useEffect(() => {
     setSortedData(allGames);
-    fetchAllAchievements();
+    fetchAllSteamAchievements();
   }, [allGames]);
 
   return (
