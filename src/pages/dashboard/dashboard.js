@@ -6,9 +6,17 @@ import {
   GetSteamAchievement,
   GetSteamLibrary,
   FetchSteamUser,
-  GetEpicAccessToken,
-  FetchEpicUser,
 } from "../../api";
+import {
+  GamingJourneyTimeline,
+  GamingPersonaWheel,
+  GenreSkillMap,
+  SkillProgressTree,
+} from "../../components";
+import { GoalPredictions } from "../../components/GoalPredictions/GoalPredictions";
+// import GamingPersonaWheel from "./components/GamingPersonaWheel";
+// import GamingJourneyTimeline from "./components/GamingJourneyTimeline";
+// import GenreSkillMap from "./components/GenreSkillMap";
 
 export const Dashboard = () => {
   const { ApiUrl, steamUser, setSteamUser } = useContext(UserContext);
@@ -142,6 +150,19 @@ export const Dashboard = () => {
           </div>
         </div>
       </section>
+
+      {/* Gaming Persona Wheel */}
+      <GamingPersonaWheel />
+
+      {/* Gaming Journey Timeline */}
+      <GamingJourneyTimeline />
+
+      {/* Genre & Skill Map */}
+      <GenreSkillMap />
+
+      <SkillProgressTree />
+
+      <GoalPredictions />
 
       <div className="game-table-container">
         {sortedData.length > 0 ? (

@@ -1,0 +1,49 @@
+.goal-predictions-container {
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #1e1e2f;
+  border-radius: 10px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(100, 149, 237, 0.8); /* Cornflower Blue border */
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(100, 149, 237, 0.6);
+  transition: 0.2s all ease-in;
+}
+
+.goal-predictions-container:hover {
+  box-shadow: 0 0 10px rgba(100, 149, 237, 1);
+}
+
+.goal-predictions-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.goal-predictions-description {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #cccccc;
+}
+
+.goal-predictions-tips {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.goal-predictions-tips h3 {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.goal-predictions-tips ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: #cccccc;
+}
+
+.goal-predictions-tips li {
+  margin-bottom: 10px;
+}

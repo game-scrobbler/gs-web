@@ -1,0 +1,104 @@
+.chart-container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  background-color: #1e1e2f; /* Dark background for contrast */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chart-title {
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(100, 149, 237, 0.8); /* Cornflower Blue border */
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(100, 149, 237, 0.6);
+  transition: 0.2s all ease-in;
+}
+
+.timeline-container:hover {
+  box-shadow: 0 0 10px rgba(100, 149, 237, 1);
+}
+
+.timeline-container svg {
+  background-color: #1e1e2f; /* Dark background for contrast */
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0 auto;
+}
+/* Milestone Circle Styling */
+.milestone circle:hover {
+  animation: glow 1.5s infinite;
+}
+
+/* Text Styling */
+.milestone text {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.year-label {
+  font-size: 14px;
+  font-weight: bold;
+  fill: #ffffff;
+}
+
+.milestone-label {
+  font-size: 12px;
+  font-weight: normal;
+  fill: #ccc;
+}
+
+/* Circle Glow Animation */
+@keyframes glow {
+  0% {
+    r: 15px;
+    fill-opacity: 0.8;
+  }
+  50% {
+    r: 20px;
+    fill-opacity: 1;
+  }
+  100% {
+    r: 15px;
+    fill-opacity: 0.8;
+  }
+}
+
+/* Line Styling */
+.timeline-line {
+  stroke: rgba(200, 200, 200, 0.5); /* Subtle lighter color */
+  stroke-width: 2;
+}
+
+.timeline-container text {
+  fill: #fff;
+  font-size: 14px;
+  text-anchor: middle;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .chart-title {
+    font-size: 1.2rem;
+  }
+
+  .timeline-container svg {
+    width: 100%;
+    height: auto;
+  }
+}

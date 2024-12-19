@@ -1,0 +1,46 @@
+.skill-progress-tree {
+  margin: 30px auto;
+  height: auto;
+  text-align: center;
+  border: 2px solid rgba(100, 149, 237, 0.8); /* Cornflower Blue border */
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(100, 149, 237, 0.6);
+  transition: 0.2s all ease-in;
+}
+
+.skill-progress-tree:hover {
+  box-shadow: 0 0 10px rgba(100, 149, 237, 1);
+}
+
+.skill-progress-tree svg {
+  background-color: #1e1e2f;
+  border-radius: 10px;
+}
+
+.link {
+  stroke: rgba(255, 255, 255, 0.2); /* Light link color */
+  stroke-width: 2;
+  fill: none; /* Remove black shades */
+}
+
+.node circle {
+  transition: all 0.2s ease-out;
+  fill-opacity: 0.8;
+}
+.node circle:hover {
+  fill-opacity: 1;
+  transform: scale(1.2);
+}
+
+.node text {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  fill: #ffffff;
+}
+
+@keyframes glow {
+  100% {
+    r: 12px;
+    fill-opacity: 1;
+  }
+}
