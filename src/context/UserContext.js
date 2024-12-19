@@ -6,7 +6,7 @@ export const UserContext = createContext();
 // Create a provider component
 export const UserProvider = ({ children }) => {
   const [steamUser, setSteamUser] = useState(null);
-  const [ApiUrl] = useState("http://localhost:4000");
+  const [ApiUrl] = useState("https://game-trace-be.onrender.com");
 
   useEffect(() => {
     const storedSteamUser = sessionStorage.getItem("steamUser");
