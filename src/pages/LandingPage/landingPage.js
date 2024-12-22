@@ -2,6 +2,7 @@ import React from "react";
 import { icons, img, SVG_path } from "../../assets";
 import "./landingPage.css"; // Assuming you'll add your styles here
 import { Svg } from "../../components";
+import { NavLink } from "react-router-dom";
 
 export const LandingPage = () => {
   // sessionStorage.removeItem("steamUser");
@@ -17,7 +18,9 @@ export const LandingPage = () => {
             Level up your gaming experience with advanced analytics, progress
             tracking, and personalized insights.
           </p>
-          <button className="cta-button">Start Tracking Now</button>
+          <NavLink to="/Log-In">
+            <button className="cta-button">Start Tracking Now</button>
+          </NavLink>
         </div>
         <div className="hero-img-container"></div>
       </section>
