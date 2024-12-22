@@ -13,7 +13,7 @@ export const Header = () => {
       <div className="logo">
         <Svg
           SVG={SVG_path.logo_black}
-          style={{ width: "80", height: "80"}}
+          style={{ width: "80", height: "80", fill: "white" }}
           alt="Logo"
         />
         <NavLink to="/" className="navLink">
