@@ -2,15 +2,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #1f1f1f;
-  max-width: 1200px;
+  padding: 20px 160px;
+  /* background-color: #1f1f1f; */
+  /* max-width: 1200px; */
   margin: 0 auto;
+  border-bottom: 2px solid #202938;
 }
 
 .logo {
   font-size: 1.5em;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
 
 .navLink {
@@ -39,19 +44,26 @@
 
 .login-button {
   padding: 10px 20px;
-  background-color: #00bcd4;
+  background-color: #ffffff;
   border: none;
-  color: #ffffff;
+  color: #111828;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .login-button:hover {
-  background-color: #0097a7;
+  background-color: #e8e7e7;
 }
 
 .userLogo {
   width: 60px;
   height: 60px;
   border-radius: 16px;
+}
+
+.header_logo {
+  width: 80px;
+  height: 80px;
+  /* fill: white; */
+  z-index: 10000000000;
 }

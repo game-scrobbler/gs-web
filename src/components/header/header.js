@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import { Svg } from "../../components";
+import { SVG_path } from "../../assets";
 
 export const Header = () => {
   const { steamUser } = useContext(UserContext);
@@ -9,13 +11,18 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="logo">
+        <Svg
+          SVG={SVG_path.logo_black}
+          style={{ width: "80", height: "80"}}
+          alt="Logo"
+        />
         <NavLink to="/" className="navLink">
-          Game Trace
+          Game Scrobbler
         </NavLink>
       </div>
       <nav className="navigation">
         <ul>
-          <li>
+          {/* <li>
             <a href="#features">Features</a>
           </li>
           <li>
@@ -23,7 +30,7 @@ export const Header = () => {
           </li>
           <li>
             <a href="#contact">Contact Us</a>
-          </li>
+          </li> */}
           <li>
             <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
@@ -38,7 +45,7 @@ export const Header = () => {
               </NavLink>
             ) : (
               <NavLink to="/Log-In">
-                <button className="login-button">Login</button>
+                <button className="login-button">Get Started</button>
               </NavLink>
             )}
           </li>

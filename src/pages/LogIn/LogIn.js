@@ -20,12 +20,12 @@ export const LoginPage = () => {
 
       <div className="login-container">
 
-        {user?.platform === "google" ? (
-          <button className="login-button google disabled">
-            Already Logged in with Google
+        {user?.platform === "play station" ? (
+          <button className="login-button play-station disabled">
+            Already Logged in with Play Station
           </button>
         ) : (
-          <button className="login-button google">Log in with Google</button>
+          <button className="login-button play-station disabled">Log in with Play Station</button>
         )}
 
         {steamUser ? (
@@ -46,7 +46,7 @@ export const LoginPage = () => {
             Already Logged in with Xbox
           </button>
         ) : (
-          <button className="login-button xbox">Log in with Xbox</button>
+          <button className="login-button xbox disabled">Log in with Xbox</button>
         )}
 
         {steamUser ? (
