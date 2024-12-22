@@ -13,7 +13,7 @@ import {
   GenreSkillMap,
   SkillProgressTree,
 } from "../../components";
-import { GoalPredictions } from "../../components/GoalPredictions/GoalPredictions";
+import { GoalPredictions } from "../../components/GamePredictions/GoalPredictions";
 // import GamingPersonaWheel from "./components/GamingPersonaWheel";
 // import GamingJourneyTimeline from "./components/GamingJourneyTimeline";
 // import GenreSkillMap from "./components/GenreSkillMap";

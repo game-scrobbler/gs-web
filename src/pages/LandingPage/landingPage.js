@@ -1,6 +1,7 @@
 import React from "react";
-import { icons, img } from "../../assets";
+import { icons, img, SVG_path } from "../../assets";
 import "./landingPage.css"; // Assuming you'll add your styles here
+import { Svg } from "../../components";
 
 export const LandingPage = () => {
   // sessionStorage.removeItem("steamUser");
@@ -10,109 +11,164 @@ export const LandingPage = () => {
     <div className="landing-page">
       {/* Hero Section */}
       <section className="hero">
-        <div className="hero-content">
-          <h1>Track Your Gaming Journey - All in One Place</h1>
-          <p>
-            Connect with Steam and Xbox to view achievements, playtime, and
-            more.
+        <div className="w-100">
+          <div className="hero-title">Track Your Gaming Journey</div>
+          <p className="hero-desc">
+            Level up your gaming experience with advanced analytics, progress
+            tracking, and personalized insights.
           </p>
-          <button className="cta-button">Get Started for Free</button>
+          <button className="cta-button">Start Tracking Now</button>
         </div>
+        <div className="hero-img-container"></div>
       </section>
 
       {/* Features Section */}
       <section id="features" className="features">
-        <h2>Features</h2>
+        <div className="feature-title">Features</div>
         <div className="feature-list">
           <div className="feature-item">
-            <img src={icons.achievement} alt="Achievement Tracking" />
-            <h3>Achievement Tracking</h3>
-            <p>View and compare your gaming milestones.</p>
+            <Svg
+              SVG={SVG_path.icon_progress}
+              style={{ width: "40", height: "40", fill: "white" }}
+              alt="Logo"
+            />
+            <div className="feature-header">Progress Tracking</div>
+            <p className="feature-desc">
+              Track your gaming progress across multiple platforms with detailed
+              analytics and insights.
+            </p>
           </div>
           <div className="feature-item">
-            <img src={icons.playTime} alt="Playtime Analytics" />
-            <h3>Playtime Analytics</h3>
-            <p>See how much time you've put into each game.</p>
+            <Svg
+              SVG={SVG_path.icon_target}
+              style={{ width: "40", height: "40", fill: "white" }}
+              alt="Logo"
+            />
+            <div className="feature-header">Goal Predictions</div>
+            <p className="feature-desc">
+              AI-powered predictions help you set and achieve meaningful gaming
+              objectives.
+            </p>
           </div>
           <div className="feature-item">
-            <img src={icons.integration} alt="Cross-Platform Integration" />
-            <h3>Cross-Platform Integration</h3>
-            <p>Connect Steam and Xbox accounts seamlessly.</p>
+            <Svg
+              SVG={SVG_path.icon_mapping}
+              style={{ width: "40", height: "40", fill: "white" }}
+              alt="Logo"
+            />
+            <div className="feature-header">Skill Mapping</div>
+            <p className="feature-desc">
+              Visualize your skill development and identify areas for
+              improvement.
+            </p>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
       <section id="how-it-works" className="how-it-works">
-        <h2>How It Works</h2>
+        <div className="how-it-works-title">How It Works</div>
         <div className="steps">
           <div className="step">
-            <h3>1. Log In</h3>
-            <p>Sign in with your Steam or Xbox account.</p>
+            <div className="step_icon_container">
+              <Svg
+                SVG={SVG_path.logo_steam}
+                style={{ width: "40", height: "40", fill: "white" }}
+                alt="Logo"
+              />
+            </div>
+            <h3>Connect Account</h3>
+            <p>
+              Link your gaming accounts from Steam, PlayStation, Xbox, and more.
+            </p>
           </div>
           <div className="step">
-            <h3>2. Sync Your Data</h3>
-            <p>Allow us to sync your game library and achievements.</p>
+            <div className="step_icon_container">
+              <Svg
+                SVG={SVG_path.icon_bar_chart}
+                style={{ width: "40", height: "40", fill: "white" }}
+                alt="Logo"
+              />
+            </div>
+            <h3>View Progress</h3>
+            <p>
+              Get detailed insights into your gaming performance and
+              achievements.
+            </p>
           </div>
           <div className="step">
-            <h3>3. Track & Share</h3>
-            <p>Monitor your progress and share with friends.</p>
+            <div className="step_icon_container">
+              <Svg
+                SVG={SVG_path.icon_trophy}
+                style={{ width: "40", height: "40", fill: "white" }}
+                alt="Logo"
+              />
+            </div>
+            <h3>Achieve More</h3>
+            <p>
+              Level up your gaming experience with personalized recommendations.
+            </p>
           </div>
         </div>
       </section>
 
       {/* User Testimonials Section */}
       <section className="testimonials">
-        <h2>What Our Users Say</h2>
-        <div className="testimonial">
-          <p>
-            "GameTracker helps me stay motivated by tracking my progress!" -
-            Gamer123
-          </p>
-        </div>
-        <div className="testimonial">
-          <p>
-            "I love seeing how much time I've put into my favorite games." -
-            PlayerOne
-          </p>
+        <div className="testimonials-titles">What Gamers Say</div>
+        <div className="testimonials-container">
+          <div className="testimonial">
+            <div className="testimonial-user-container">
+              <Svg
+                SVG={SVG_path.user1}
+                style={{ width: "80", height: "80", fill: "white" }}
+                alt="Logo"
+              />
+              <div className="testimonial-user-profile-container">
+                <div className="testimonial-user-title">Alex Thompson</div>
+                <div className="testimonial-user-tag">Pro Gamer</div>
+              </div>
+            </div>
+            <p className="testimonial-user-review">
+              "GameTrack has revolutionized how I approach competitive gaming.
+              The insights are invaluable."
+            </p>
+          </div>
+          <div className="testimonial">
+            <div className="testimonial-user-container">
+              <Svg
+                SVG={SVG_path.user2}
+                style={{ width: "80", height: "80", fill: "white" }}
+                alt="Logo"
+              />
+              <div className="testimonial-user-profile-container">
+                <div className="testimonial-user-title">Alex Thompson</div>
+                <div className="testimonial-user-tag">Pro Gamer</div>
+              </div>
+            </div>
+            <p className="testimonial-user-review">
+              "The platform helps me track my progress and set meaningful goals
+              for my gaming career."
+            </p>
+          </div>
+          <div className="testimonial">
+            <div className="testimonial-user-container">
+              <Svg
+                SVG={SVG_path.user3}
+                style={{ width: "80", height: "80", fill: "white" }}
+                alt="Logo"
+              />
+              <div className="testimonial-user-profile-container">
+                <div className="testimonial-user-title">Alex Thompson</div>
+                <div className="testimonial-user-tag">Pro Gamer</div>
+              </div>
+            </div>
+            <p className="testimonial-user-review">
+              "Finally, a platform that helps me understand my gaming habits and
+              improve consistently."
+            </p>
+          </div>
         </div>
       </section>
-
-      {/* Showcase Section */}
-      <section className="showcase">
-        <h2>Take a Look Inside</h2>
-        <div className="showcase-images">
-          <img
-            src="https://img.freepik.com/free-vector/business-dashboard-element-collection_23-2148361995.jpg?t=st=1730642350~exp=1730645950~hmac=e4d827448b01569be388ea0b0419f158e90e3aae2ffdb4f284cb4dee8b76c3e1&w=826"
-            alt="Dashboard Screenshot"
-          />
-          <img src={img.temp} alt="Progress Screenshot" />
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section className="call-to-action">
-        <h2>Ready to Track Your Gaming Progress?</h2>
-        <button className="cta-button">Get Started</button>
-      </section>
-
-      {/* Footer Section */}
-      <footer className="footer">
-        <div className="footer-links">
-          <a href="/">Privacy Policy</a> | <a href="/">Terms of Service</a>
-        </div>
-        <div className="social-media">
-          <a href="/">
-            <img src="/icons/twitter-icon.png" alt="Twitter" />
-          </a>
-          <a href="/">
-            <img src="/icons/instagram-icon.png" alt="Instagram" />
-          </a>
-        </div>
-        <div className="contact-info">
-          <p>Contact us: support@gametracker.com</p>
-        </div>
-      </footer>
     </div>
   );
 };

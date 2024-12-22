@@ -1,15 +1,6 @@
 /* LoginPage.css */
 
 /* General Styles */
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: "Arial", sans-serif;
-  box-sizing: border-box;
-  background-color: #121212;
-  color: #ffffff;
-}
 
 .login-page {
   max-width: 500px;
@@ -138,4 +129,8 @@ html {
 
 .logout-button:hover {
   background-color: #0056b3;
+}
+
+.play-station {
+  background-color: #0170ca;
 }

@@ -1,0 +1,54 @@
+.footer {
+  height: 300px;
+  background-color: #202938;
+  border-top: 2px solid #394253;
+  padding: 100px 160px;
+  display: flex;
+  gap: 80px;
+}
+
+.footer-container-logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 40px;
+}
+
+.footer-container-logo-name {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.footer-header {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 40px;
+  height: 40px;
+  text-align: left;
+}
+
+.footer-sub-header {
+  color: #979fae;
+  font-size: 20px;
+  padding-bottom: 16px;
+  text-align: left;
+}
+
+.footer-container-logo-tagline {
+  color: #979fae;
+  font-size: 20px;
+  text-align: left;
+}
+
+.footer-big-container {
+  flex: 1;
+}
+
+.footer-connect-container {
+  display: flex;
+  gap: 16px;
+}

@@ -1,58 +1,74 @@
 /* LandingPage.css */
 
 /* General Styles */
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: "Arial", sans-serif;
-  box-sizing: border-box;
-  background-color: #121212;
-  color: #ffffff;
-}
 
 .landing-page {
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 0px;
 }
-
 
 /* Hero Section */
 .hero {
-  text-align: center;
-  padding: 80px 20px;
-  background-image: url("https://plus.unsplash.com/premium_photo-1687854992749-e15cba89631d?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
-  background-position: center;
-  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero-content {
-  background: rgba(0, 0, 0, 0.7);
-  display: inline-block;
-  padding: 40px;
-  border-radius: 10px;
+.w-100 {
+  width: 100%;
+}
+
+.hero {
+  padding: 0px 160px;
+}
+
+.hero-title {
+  font-weight: bold;
+  font-size: 80px;
+}
+
+.hero-desc {
+  position: relative;
+  font-size: 30px;
+  width: 120%;
+  z-index: 10;
+}
+
+.hero-img-container {
+  width: 100%;
+  background-color: #202938;
+  height: 800px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  margin-right: -160px;
 }
 
 .cta-button {
   padding: 15px 30px;
-  background-color: #00bcd4;
+  background-color: #ffffff;
   border: none;
-  color: #ffffff;
+  color: #111828;
   font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 8px;
 }
 
 .cta-button:hover {
-  background-color: #0097a7;
+  background-color: #e8e7e7;
 }
 
 /* Features Section */
 .features {
-  padding: 60px 20px;
+  padding: 60px 160px;
   text-align: center;
+  margin-bottom: 60px;
+}
+
+.feature-title {
+  font-weight: bold;
+  font-size: 60px;
+  padding: 60px 0px;
 }
 
 .feature-list {
@@ -60,15 +76,23 @@ html {
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
+  text-align: left;
 }
 
 .feature-item {
   flex: 1;
-  max-width: 300px;
-  padding: 20px;
-  background-color: #1f1f1f;
+  padding: 40px;
+  background-color: #202938;
   border-radius: 10px;
-  text-align: center;
+}
+
+.feature-header {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.feature-desc {
+  font-size: 20px;
 }
 
 .feature-item img {
@@ -79,9 +103,16 @@ html {
 
 /* How It Works Section */
 .how-it-works {
-  padding: 60px 20px;
-  background-color: #1f1f1f;
+  padding: 60px 160px;
+  background-color: #202938;
   border-radius: 10px;
+}
+
+.how-it-works-title {
+  font-weight: bold;
+  font-size: 60px;
+  padding: 60px 0px;
+  text-align: center;
 }
 
 .steps {
@@ -93,26 +124,74 @@ html {
 
 .step {
   flex: 1;
-  max-width: 300px;
   padding: 20px;
-  background-color: #292929;
   border-radius: 10px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.step_icon_container {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #384152;
 }
 
 /* Testimonials Section */
 .testimonials {
-  padding: 60px 20px;
+  padding: 60px 160px;
+}
+
+.testimonials-titles {
+  font-weight: bold;
+  font-size: 60px;
+  padding: 60px 0px;
   text-align: center;
+}
+
+.testimonials-container {
+  gap: 40px;
+  display: flex;
 }
 
 .testimonial {
   margin: 20px auto;
-  max-width: 600px;
-  background-color: #1f1f1f;
-  padding: 20px;
+  background-color: #202938;
+  padding: 40px;
   border-radius: 10px;
-  font-style: italic;
+  /* font-style: italic; */
+}
+
+.testimonial-user-container {
+  display: flex;
+  gap: 20px;
+}
+.testimonial-user-title {
+  font-weight: bold;
+  font-size: 24px;
+}
+.testimonial-user-tag {
+  font-size: 18px;
+  color: #979fae;
+}
+.testimonial-user-review {
+  font-size: 20px;
+  color: #d1dfeb;
+  line-height: 30px;
+}
+
+.testimonial-user-profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
 }
 
 /* Showcase Section */
