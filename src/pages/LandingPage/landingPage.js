@@ -3,11 +3,9 @@ import { icons, img, SVG_path } from "../../assets";
 import "./landingPage.css"; // Assuming you'll add your styles here
 import { Svg } from "../../components";
 import { NavLink } from "react-router-dom";
+import { TestSteamHistory } from "../../api";
 
 export const LandingPage = () => {
-  // sessionStorage.removeItem("steamUser");
-  // sessionStorage.removeItem("epicUser");
-  // sessionStorage.removeItem("user");
   return (
     <div className="landing-page">
       {/* Hero Section */}

@@ -5,6 +5,29 @@ export const HandleSteamLogin = (ApiUrl) => {
   window.location.href = ApiUrl + "/auth/steam";
 };
 
+// export const TestSteamHistory = async (ApiUrl) => {
+//   // Redirect the user to the backend Steam authentication route
+//   try {
+//     await axios
+//       .get(ApiUrl + "/api/getSteamReport", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ appid: "YOUR_APP_ID", time: Date.now() / 1000 }),
+//       })
+//       .then((response) => response.json())
+//       .then((data) => console.log(data))
+//       .catch((error) => console.error(error));
+
+//     // Process response if the game has achievements
+//   } catch (err) {
+//     console.log(err);
+
+//     // Check if the error is due to a lack of achievements (400 status)
+//   }
+// };
+
 export const GetSteamAchievement = async (appid, user, ApiUrl) => {
   try {
     const achievementResponse = await axios.get(
@@ -39,7 +62,6 @@ export const GetSteamAchievement = async (appid, user, ApiUrl) => {
 };
 
 export const GetSteamLibrary = async (user, ApiUrl) => {
-    
   try {
     const steamId = user.id; // Replace with the user's Steam ID
     const response = await axios.get(ApiUrl + "/api/owned-games", {
@@ -48,6 +70,7 @@ export const GetSteamLibrary = async (user, ApiUrl) => {
 
     let games = response.data.games;
     let tempOwnedGames = [];
+    console.log(games);
 
     games.map(async (game) => {
       tempOwnedGames.push({
