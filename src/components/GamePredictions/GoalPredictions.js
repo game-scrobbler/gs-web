@@ -80,10 +80,10 @@ export const GoalPredictions = () => {
     <div className="goal-predictions-container">
       <h2 className="goal-predictions-title">Goal Predictions</h2>
       <p className="goal-predictions-description">
-        Analyze your gaming habits and predict future achievements based on
-        your playtime trends.
+        Analyze your gaming habits and predict future achievements based on your
+        playtime trends.
       </p>
-      <Bar data={data} options={options} />
+      <Bar data={data} options={options}  />
       <div className="goal-predictions-tips">
         <h3>Personalized Tips</h3>
         <ul>

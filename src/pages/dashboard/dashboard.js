@@ -150,20 +150,17 @@ export const Dashboard = () => {
           </div>
         </div>
       </section>
-
-      {/* Gaming Persona Wheel */}
-      <GamingPersonaWheel />
-
-      {/* Gaming Journey Timeline */}
-      <GamingJourneyTimeline />
-
-      {/* Genre & Skill Map */}
-      <GenreSkillMap />
-
-      <SkillProgressTree />
-
-      <GoalPredictions />
-
+      <div className="dashboard-charts-container">
+        <GamingJourneyTimeline />
+        <div className="dashboard-charts-container-2">
+          <div className="flex space-between gap-40">
+            <GamingPersonaWheel />
+            <GenreSkillMap />
+          </div>
+          <SkillProgressTree />
+          <GoalPredictions />
+        </div>
+      </div>
       <div className="game-table-container">
         {sortedData.length > 0 ? (
           <table className="game-table">

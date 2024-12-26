@@ -46,3 +46,15 @@ html {
   background-color: #111828;
   color: #ffffff;
 }
+
+.flex {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.gap-40 {
+gap: 40px;
+}

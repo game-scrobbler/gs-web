@@ -3,9 +3,8 @@
 /* General Styles */
 
 .dashboard {
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 160px;
 }
 
 /* Header Section */
@@ -28,6 +27,8 @@
 .game-table-container {
   overflow-x: auto;
   margin-bottom: 40px;
+  height: 600px;
+  overflow-y: scroll;
 }
 
 .game-table {
@@ -35,7 +36,6 @@
   border-collapse: collapse;
   background-color: #1f1f1f;
   border-radius: 10px;
-  overflow: hidden;
 }
 
 .game-table th,
@@ -95,4 +95,17 @@
 .stat-item p {
   font-size: 1.2em;
   color: #00bcd4;
+}
+
+.dashboard-charts-container {
+  display: flex;
+  margin-bottom: 60px;
+  gap: 40px;
+}
+
+.dashboard-charts-container-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex-grow: 2;
 }

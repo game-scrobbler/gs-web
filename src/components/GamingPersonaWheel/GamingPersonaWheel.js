@@ -34,7 +34,7 @@ export const GamingPersonaWheel = () => {
   return (
     <div className="chart-container persona-wheel chart-glow">
       <h2 className="chart-title">Gaming Persona Wheel</h2>
-      <div ref={chartRef} style={{ width: "100%", height: "400px" }} />
+      <div ref={chartRef} className="persona-wheel-chart" />
     </div>
   );
 };

@@ -80,7 +80,7 @@ export const GenreSkillMap = () => {
   return (
     <div className="chart-container skill-map">
       <h2 className="chart-title">Genre & Skill Map</h2>
-      <canvas ref={chartRef}></canvas>
+      <canvas ref={chartRef} className="chart-skill-map"></canvas>
     </div>
   );
 };

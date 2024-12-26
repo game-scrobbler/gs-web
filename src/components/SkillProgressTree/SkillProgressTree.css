@@ -1,11 +1,11 @@
 .skill-progress-tree {
-  margin: 30px auto;
   height: auto;
   text-align: center;
   border: 2px solid rgba(100, 149, 237, 0.8); /* Cornflower Blue border */
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(100, 149, 237, 0.6);
   transition: 0.2s all ease-in;
+  flex: 1;
 }
 
 .skill-progress-tree:hover {

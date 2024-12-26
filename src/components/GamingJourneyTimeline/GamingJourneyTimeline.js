@@ -78,7 +78,7 @@ export const GamingJourneyTimeline = () => {
   }, []);
 
   return (
-    <div className="chart-container timeline-container">
+    <div className="timeline-container">
       <h2 className="chart-title">Gaming Journey Timeline</h2>
       <svg ref={timelineRef}></svg>
     </div>
