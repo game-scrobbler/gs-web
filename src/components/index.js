@@ -5,3 +5,5 @@ export * from "./GenreSkillMap";
 export * from "./SkillProgressTree";
 export * from "./Svg";
 export * from "./CustomFooter";
+export * from "./GenreHeatMap";
+export * from "./GameTable";

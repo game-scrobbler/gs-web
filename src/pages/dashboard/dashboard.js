@@ -6,10 +6,13 @@ import {
   GetSteamAchievement,
   GetSteamLibrary,
   FetchSteamUser,
+  GetSteamAppInfo,
 } from "../../api";
 import {
+  GameTable,
   GamingJourneyTimeline,
   GamingPersonaWheel,
+  GenreHeatMap,
   GenreSkillMap,
   SkillProgressTree,
 } from "../../components";
@@ -17,6 +20,14 @@ import { GoalPredictions } from "../../components/GamePredictions/GoalPrediction
 // import GamingPersonaWheel from "./components/GamingPersonaWheel";
 // import GamingJourneyTimeline from "./components/GamingJourneyTimeline";
 // import GenreSkillMap from "./components/GenreSkillMap";
+
+const heatmapData = [
+  [1, 2, 3, 4, 5],
+  [5, 4, 3, 2, 1],
+  [2, 3, 4, 5, 1],
+  [3, 4, 5, 1, 2],
+  [4, 5, 1, 2, 3],
+];
 
 export const Dashboard = () => {
   const { ApiUrl, steamUser, setSteamUser } = useContext(UserContext);
@@ -48,20 +59,25 @@ export const Dashboard = () => {
   };
 
   const fetchAllSteamAchievements = async () => {
-    const batchSize = 50;
+    const batchSize = 15;
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     for (let i = 0; i < allGames.length; i += batchSize) {
       const batch = allGames.slice(i, i + batchSize);
 
       try {
+        await delay(6000);
         const updatedBatch = await Promise.all(
           batch.map(async (game) => {
             const { achievementsCompleted, totalAchievements } =
               await GetSteamAchievement(game.appid, steamUser, ApiUrl);
+            // const appInfo = await GetSteamAppInfo(ApiUrl, game.appid);
+
             return {
               ...game,
               achievementsCompleted,
               totalAchievements,
+              // appInfo: appInfo || {},
             };
           })
         );
@@ -105,6 +121,9 @@ export const Dashboard = () => {
   useEffect(() => {
     setSortedData(allGames);
     fetchAllSteamAchievements();
+    // if (allGames.length > 0) {
+    //   GetSteamAppInfo(ApiUrl, allGames[0].appid);
+    // }
   }, [allGames]);
 
   return (
@@ -159,9 +178,13 @@ export const Dashboard = () => {
           </div>
           <SkillProgressTree />
           <GoalPredictions />
+          <GenreHeatMap
+            title="Dynamic Data Heatmap"
+            colorRange={["#ff0000", "#ffff00", "#00ff00"]}
+          />
         </div>
       </div>
-      <div className="game-table-container">
+      {/* <div className="game-table-container">
         {sortedData.length > 0 ? (
           <table className="game-table">
             <thead>
@@ -194,7 +217,12 @@ export const Dashboard = () => {
             No games in your library. Start adding games to track your progress!
           </p>
         )}
-      </div>
+      </div> */}
+      {allGames.length > 0 ? (
+        <GameTable allGames={allGames} />
+      ) : (
+        <div>games list updating</div>
+      )}
     </div>
   );
 };

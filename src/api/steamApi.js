@@ -70,7 +70,6 @@ export const GetSteamLibrary = async (user, ApiUrl) => {
 
     let games = response.data.games;
     let tempOwnedGames = [];
-    console.log(games);
 
     games.map(async (game) => {
       tempOwnedGames.push({
@@ -87,5 +86,31 @@ export const GetSteamLibrary = async (user, ApiUrl) => {
     return tempOwnedGames || [];
   } catch (err) {
     console.error("Error fetching owned games:", err);
+  }
+};
+
+export const GetSteamAppInfo = async (ApiUrl, appid) => {
+  if (!ApiUrl || !appid) {
+    console.error("ApiUrl and App ID are required");
+    return null;
+  }
+
+  try {
+    // Make a GET request to your backend API
+    const response = await axios.get(`${ApiUrl}/api/getGameTags`, {
+      params: { appid: appid }, // Add the appid as query parameter
+    });
+
+    if (response.status !== 200) {
+      console.error(`Failed to fetch game info. Status: ${response.status}`);
+      return null;
+    }
+    console.log(response.data.data);
+
+    const data = await response.data.data;
+    return data;
+  } catch (error) {
+    // console.error("Error fetching Steam app info:", error);
+    return null;
   }
 };
