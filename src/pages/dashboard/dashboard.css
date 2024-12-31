@@ -4,7 +4,7 @@
 
 .dashboard {
   margin: 0 auto;
-  padding: 20px 160px;
+  padding: 20px 0px;
 }
 
 /* Header Section */
@@ -31,44 +31,17 @@
   overflow-y: scroll;
 }
 
-.game-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #1f1f1f;
-  border-radius: 10px;
-}
-
-.game-table th,
-.game-table td {
-  padding: 15px;
-  text-align: left;
-}
-
-.game-table th {
-  background-color: #333;
-  color: #00bcd4;
-}
-
-.game-table td {
-  border-bottom: 1px solid #333;
-}
-
-.game-table tr:hover {
-  background-color: #2a2a2a;
-}
-
 /* Statistics Section */
 .statistics {
-  background-color: #1f1f1f;
-  padding: 40px;
-  border-radius: 10px;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 100px;
+  padding: 0px 160px;
 }
 
 .statistics h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 60px;
+  margin-bottom: 60px;
 }
 
 .stats-container {
@@ -79,7 +52,7 @@
 }
 
 .stat-item {
-  background-color: #292929;
+  background-color: #202938;
   padding: 20px;
   border-radius: 10px;
   flex: 1;
@@ -87,14 +60,24 @@
   text-align: center;
 }
 
-.stat-item h3 {
+.stat-item h2 {
   font-size: 1.5em;
   margin-bottom: 10px;
+  text-align: left;
+  color: #6e6f74;
 }
 
 .stat-item p {
-  font-size: 1.2em;
-  color: #00bcd4;
+  font-size: 30px;
+  text-align: left;
+  color: #ffffff;
+  /* color: #4b5463; */
+}
+
+.stat-progress {
+  text-align: left;
+  color: #5e6571;
+  font-size: 22px;
 }
 
 .dashboard-charts-container {
@@ -108,4 +91,21 @@
   flex-direction: column;
   gap: 40px;
   flex-grow: 2;
+}
+
+.game-table {
+  padding: 100px 160px;
+  margin-bottom: 120px;
+  background-color: #202938;
+}
+
+.game-table-title {
+  font-weight: bold;
+  font-size: 60px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.dash-charts {
+  padding: 0px 160px;
 }

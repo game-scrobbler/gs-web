@@ -15,19 +15,8 @@ import {
   GenreHeatMap,
   GenreSkillMap,
   SkillProgressTree,
+  GoalPredictions,
 } from "../../components";
-import { GoalPredictions } from "../../components/GamePredictions/GoalPredictions";
-// import GamingPersonaWheel from "./components/GamingPersonaWheel";
-// import GamingJourneyTimeline from "./components/GamingJourneyTimeline";
-// import GenreSkillMap from "./components/GenreSkillMap";
-
-const heatmapData = [
-  [1, 2, 3, 4, 5],
-  [5, 4, 3, 2, 1],
-  [2, 3, 4, 5, 1],
-  [3, 4, 5, 1, 2],
-  [4, 5, 1, 2, 3],
-];
 
 export const Dashboard = () => {
   const { ApiUrl, steamUser, setSteamUser } = useContext(UserContext);
@@ -36,27 +25,6 @@ export const Dashboard = () => {
   const [allGames, setAllGames] = useState([]);
   const [sortedData, setSortedData] = useState(allGames);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
-
-  // Sorting function
-  const handleSort = (key) => {
-    let direction = "asc";
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc";
-    }
-
-    const sortedArray = [...sortedData].sort((a, b) => {
-      if (a[key] < b[key]) {
-        return direction === "asc" ? -1 : 1;
-      }
-      if (a[key] > b[key]) {
-        return direction === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
-
-    setSortedData(sortedArray);
-    setSortConfig({ key, direction });
-  };
 
   const fetchAllSteamAchievements = async () => {
     const batchSize = 15;
@@ -128,23 +96,16 @@ export const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <header className="dashboard-header">
-        <h1>Your Game Library</h1>
-        <p>
-          Track your gaming journey, view playtime, and achievements across
-          platforms.
-        </p>
-      </header>
-
       <section className="statistics">
         <h2>Overall Stats</h2>
         <div className="stats-container">
           <div className="stat-item">
-            <h3>Total Games</h3>
+            <h2>Total Games</h2>
             <p>{allGames.length}</p>
+            <div className="stat-progress">+3 this month</div>
           </div>
           <div className="stat-item">
-            <h3>Total Hours Played</h3>
+            <h2>Total Hours Played</h2>
             <p>
               {allGames.reduce(
                 (total, game) => total + Math.round(game.hoursPlayed),
@@ -152,38 +113,52 @@ export const Dashboard = () => {
               )}{" "}
               hrs
             </p>
+            <div className="stat-progress">+12.3 this week</div>
           </div>
           <div className="stat-item">
-            <h3>Total Achievements</h3>
+            <h2>Total Achievements</h2>
             <p>
               {sortedData.reduce(
                 (total, game) => total + game.achievementsCompleted,
                 0
               )}{" "}
-              /
+              /{" "}
               {sortedData.reduce(
                 (total, game) => total + game.totalAchievements,
                 0
               )}
             </p>
+            <div className="stat-progress">+3 this month</div>
           </div>
         </div>
       </section>
-      <div className="dashboard-charts-container">
-        <GamingJourneyTimeline />
-        <div className="dashboard-charts-container-2">
-          <div className="flex space-between gap-40">
-            <GamingPersonaWheel />
-            <GenreSkillMap />
+      <section className="game-table">
+        {allGames.length > 0 ? (
+          <>
+            <div className="game-table-title">Game Table</div>
+            <GameTable allGames={allGames} />
+          </>
+        ) : (
+          <div>games list updating</div>
+        )}
+      </section>
+      <section className="dash-charts">
+        <div className="dashboard-charts-container">
+          <GamingJourneyTimeline />
+          <div className="dashboard-charts-container-2">
+            <div className="flex space-between gap-40">
+              <GamingPersonaWheel />
+              <GenreSkillMap />
+            </div>
+            <SkillProgressTree />
+            <GoalPredictions />
+            <GenreHeatMap
+              title="Dynamic Data Heatmap"
+              colorRange={["#ff0000", "#ffff00", "#00ff00"]}
+            />
           </div>
-          <SkillProgressTree />
-          <GoalPredictions />
-          <GenreHeatMap
-            title="Dynamic Data Heatmap"
-            colorRange={["#ff0000", "#ffff00", "#00ff00"]}
-          />
         </div>
-      </div>
+      </section>
       {/* <div className="game-table-container">
         {sortedData.length > 0 ? (
           <table className="game-table">
@@ -218,11 +193,6 @@ export const Dashboard = () => {
           </p>
         )}
       </div> */}
-      {allGames.length > 0 ? (
-        <GameTable allGames={allGames} />
-      ) : (
-        <div>games list updating</div>
-      )}
     </div>
   );
 };

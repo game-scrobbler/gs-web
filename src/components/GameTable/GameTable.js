@@ -79,7 +79,11 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <TableHead
+      sx={{
+        backgroundColor: "#111828",
+      }}
+    >
       <TableRow>
         <TableCell padding="checkbox"></TableCell>
         {headCells.map((headCell) => (
@@ -88,11 +92,21 @@ function EnhancedTableHead(props) {
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{
+              color: "#ffffff !important",
+            }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
+              sx={{
+                color: "#ffffff !important",
+                fill: "#ffffff !important",
+                ".MuiTableSortLabel-icon": {
+                  color: "white !important", // Change icon color
+                },
+              }}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
@@ -171,7 +185,7 @@ export function GameTable({ allGames }) {
       <Paper sx={{ width: "100%", mb: 2 }}>
         <TableContainer>
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{ minWidth: 750}}
             aria-labelledby="tableTitle"
             size={dense ? "small" : "medium"}
           >
@@ -197,21 +211,70 @@ export function GameTable({ allGames }) {
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
-                    sx={{ cursor: "pointer" }}
+                    sx={{
+                      cursor: "pointer",
+                      backgroundColor: "#111828",
+                      borderColor: "#2a2a2a",
+
+                      ":hover": {
+                        backgroundColor: "#202938 !important",
+                      },
+                    }}
                   >
-                    <TableCell padding="checkbox"></TableCell>
+                    <TableCell
+                      sx={{
+                        borderColor: "#2a2a2a",
+                      }}
+                      padding="checkbox"
+                    ></TableCell>
                     <TableCell
                       component="th"
                       id={labelId}
                       scope="row"
                       padding="none"
+                      sx={{
+                        color: "#ffffff !important",
+                        borderColor: "#2a2a2a",
+                      }}
                     >
                       {row.GameTitle}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell
+                      sx={{
+                        color: "#ffffff !important",
+                        borderColor: "#2a2a2a",
+                      }}
+                      align="right"
+                    >
+                      {row.calories}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        color: "#ffffff !important",
+                        borderColor: "#2a2a2a",
+                      }}
+                      align="right"
+                    >
+                      {row.fat}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        color: "#ffffff !important",
+                        borderColor: "#2a2a2a",
+                      }}
+                      align="right"
+                    >
+                      {row.carbs}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        color: "#ffffff !important",
+                        borderColor: "#2a2a2a",
+                      }}
+                      align="right"
+                    >
+                      {row.protein}
+                    </TableCell>
                   </TableRow>
                 );
               })}
@@ -235,6 +298,21 @@ export function GameTable({ allGames }) {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          sx={{
+            backgroundColor: "#111828",
+            color: "#ffffff",
+            ".css-cdtzx3-MuiButtonBase-root-MuiIconButton-root.Mui-disabled": {
+              color: "#2a2a2a !important", // Change icon color
+            },
+            ".css-1gpuzre-MuiSvgIcon-root-MuiSelect-icon": {
+              color: "white !important", // Change icon color
+            },
+            ".css-1rwta7t-MuiSvgIcon-root-MuiSelect-icon": {
+              color: "white !important", // Change icon color
+            },
+            // borderBottomRightRadius: "10px",
+            // borderBottomLeftRadius: "10px",
+          }}
         />
       </Paper>
     </Box>

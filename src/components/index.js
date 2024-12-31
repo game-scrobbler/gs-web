@@ -7,3 +7,4 @@ export * from "./Svg";
 export * from "./CustomFooter";
 export * from "./GenreHeatMap";
 export * from "./GameTable";
+export * from "./GamePredictions";
