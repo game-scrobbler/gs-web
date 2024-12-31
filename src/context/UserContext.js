@@ -6,7 +6,7 @@ export const UserContext = createContext();
 // Create a provider component
 export const UserProvider = ({ children }) => {
   const [steamUser, setSteamUser] = useState(null);
-  const [ApiUrl] = useState("http://localhost:4000");
+  const ApiUrl = 'https://api.gamescrobbler.com';
 
   useEffect(() => {
     const storedSteamUser = sessionStorage.getItem("steamUser");
