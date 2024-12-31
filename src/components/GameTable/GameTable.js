@@ -50,25 +50,25 @@ const headCells = [
     id: "calories",
     numeric: true,
     disablePadding: false,
-    label: "Calories",
+    label: "Platform",
   },
   {
     id: "fat",
     numeric: true,
     disablePadding: false,
-    label: "Fat (g)",
+    label: "Hours Played",
   },
   {
     id: "carbs",
     numeric: true,
     disablePadding: false,
-    label: "Carbs (g)",
+    label: "Achievements Completed",
   },
   {
     id: "protein",
     numeric: true,
     disablePadding: false,
-    label: "Protein (g)",
+    label: "Total Achievements",
   },
 ];
 
@@ -137,12 +137,20 @@ export function GameTable({ allGames }) {
   const [selected, setSelected] = React.useState([]);
   const [rows, setRows] = React.useState(
     allGames.map((game, i) => {
-      return createData(i, game.title, 305, i, 67, 4.3);
+      return createData(
+        i,
+        game.title,
+        game.platform,
+        game.hoursPlayed,
+        game.achievementsCompleted,
+        game.totalAchievements
+      );
     })
   );
   const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  console.log(allGames);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -185,7 +193,7 @@ export function GameTable({ allGames }) {
       <Paper sx={{ width: "100%", mb: 2 }}>
         <TableContainer>
           <Table
-            sx={{ minWidth: 750}}
+            sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
             size={dense ? "small" : "medium"}
           >
