@@ -23,8 +23,6 @@ export const Dashboard = () => {
   const [setError] = useState(null);
   const location = useLocation();
   const [allGames, setAllGames] = useState([]);
-  const [sortedData, setSortedData] = useState(allGames);
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   const fetchAllSteamAchievements = async () => {
     const batchSize = 15;
@@ -51,7 +49,7 @@ export const Dashboard = () => {
         );
 
         // Update the state incrementally with the new data
-        setSortedData((prevData) => {
+        setAllGames((prevData) => {
           const updatedData = [...prevData];
           for (let j = 0; j < updatedBatch.length; j++) {
             updatedData[i + j] = updatedBatch[j];
@@ -87,7 +85,6 @@ export const Dashboard = () => {
   }, [location]);
 
   useEffect(() => {
-    setSortedData(allGames);
     fetchAllSteamAchievements();
     // if (allGames.length > 0) {
     //   GetSteamAppInfo(ApiUrl, allGames[0].appid);
@@ -118,12 +115,12 @@ export const Dashboard = () => {
           <div className="stat-item">
             <h2>Total Achievements</h2>
             <p>
-              {sortedData.reduce(
+              {allGames.reduce(
                 (total, game) => total + game.achievementsCompleted,
                 0
               )}{" "}
               /{" "}
-              {sortedData.reduce(
+              {allGames.reduce(
                 (total, game) => total + game.totalAchievements,
                 0
               )}
@@ -160,7 +157,7 @@ export const Dashboard = () => {
         </div>
       </section>
       {/* <div className="game-table-container">
-      
+
         {sortedData.length > 0 ? (
           <table className="game-table">
             <thead>

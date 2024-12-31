@@ -150,7 +150,6 @@ export function GameTable({ allGames }) {
   const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  console.log(allGames);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -185,8 +184,23 @@ export function GameTable({ allGames }) {
       [...rows]
         .sort(getComparator(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-    [order, orderBy, page, rowsPerPage]
+    [order, orderBy, page, rowsPerPage, rows]
   );
+
+  React.useMemo(() => {
+    setRows(
+      allGames.map((game, i) => {
+        return createData(
+          i,
+          game.title,
+          game.platform,
+          game.hoursPlayed,
+          game.achievementsCompleted,
+          game.totalAchievements
+        );
+      })
+    );
+  }, [allGames]);
 
   return (
     <Box sx={{ width: "100%" }}>
