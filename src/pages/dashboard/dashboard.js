@@ -160,6 +160,7 @@ export const Dashboard = () => {
         </div>
       </section>
       {/* <div className="game-table-container">
+      
         {sortedData.length > 0 ? (
           <table className="game-table">
             <thead>
